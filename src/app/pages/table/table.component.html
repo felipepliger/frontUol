@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">People Star Wars</h4>
+      </div>
+      <div class="card-body">
+        <div class="">
+          <table class="table table-bored">
+            <thead class=" text-primary">
+              <th *ngFor="let head of headElements" scope="col">
+                {{ head }}
+              </th>
+              <th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let el of peoples">
+                <td>{{ el.name }}</td>
+                <td>{{ el.birth_year }}</td>
+                <td>{{ el.gender }}</td>
+                <td>{{ el.eye_color }}</td>
+                <td>{{ el.hair_color }}</td>
+                <td>{{ el.height }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
