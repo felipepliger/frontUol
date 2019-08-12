@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-user">
+            <div *ngIf="film">
+                <div class="card-header">
+                    <h5 class="card-title">{{ film.title }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <label>Titulo</label>
+                                <input type="text" class="form-control" disabled="" [value]="film.title">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                <label>Diretores</label>
+                                <input type="text" class="form-control" disabled="" [value]="film.director">
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                <label>Produtores</label>
+                                <input type="text" class="form-control" disabled="" [value]="film.producer">
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                <label>Data de Lançamento</label>
+                                <input type="date" class="form-control" disabled="" [value]="film.release_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Resumo:</label>
+                                <pre>
+                                    {{ film.opening_crawl }}
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!film" style="margin-left: 45%; margin-top: 50px; margin-bottom: 50px" class="loader"></div>
+        </div>
+    </div>
+</div>

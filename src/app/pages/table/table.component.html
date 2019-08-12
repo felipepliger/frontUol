@@ -1,31 +1,92 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">People Star Wars</h4>
-      </div>
-      <div class="card-body">
-        <div class="">
-          <table class="table table-bored">
-            <thead class=" text-primary">
-              <th *ngFor="let head of headElements" scope="col">
-                {{ head }}
-              </th>
-              <th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let el of peoples">
-                <td>{{ el.name }}</td>
-                <td>{{ el.birth_year }}</td>
-                <td>{{ el.gender }}</td>
-                <td>{{ el.eye_color }}</td>
-                <td>{{ el.hair_color }}</td>
-                <td>{{ el.height }}</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">People Star Wars</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input class="form-control" type="text" (keyup)="search($event.target.value, 'name')"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                        <div class="form-group">
+                            <label>Ano Nascimento</label>
+                            <input class="form-control" type="text" (keyup)="search($event.target.value, 'birth_year')"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                        <div class="form-group">
+                            <label>Cor do Olho</label>
+                            <input class="form-control" type="text" (keyup)="search($event.target.value, 'eye_color')"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3 pl-1">
+                        <div class="form-group">
+                            <label>Genero</label>
+                            <select (change)="search($event.target.value, 'gender')" class="form-control">
+                                <option value="">...</option>
+                                <option value="female">Feminino</option>
+                                <option value="male">Masculino</option>
+                                <option value="n/a">N/A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="!peoples" style="margin-left: 45%" class="loader"></div>
+                <div *ngIf="peoples" class="">
+                    <table class="table table-bored">
+                        <thead class=" text-primary">
+                        <th *ngFor="let head of headElements" scope="col">
+                            {{ head }}
+                        </th>
+                        <th>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let el of peoples">
+                            <td>{{ el.name }}</td>
+                            <td>{{ el.birth_year }}</td>
+                            <td>{{ el.gender }}</td>
+                            <td>{{ el.eye_color }}</td>
+                            <td>{{ el.hair_color }}</td>
+                            <td>{{ el.height }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary btn-round"
+                                        (click)="openVerticallyCentered(content, el)"><i
+                                        class="nc-icon nc-zoom-split"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Filmes feitos por {{ people.name }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ul class="list-group">
+            <li *ngFor="let filme of listaFilms" class="list-group-item"><a (click)="closeModal()"
+                                                                            [routerLink]="['/film/' + filme.id]"><b>{{ filme.title }}</b></a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="closeModal()">Fechar</button>
+    </div>
+</ng-template>

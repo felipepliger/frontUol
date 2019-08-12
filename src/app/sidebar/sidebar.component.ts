@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 
 export interface RouteInfo {
@@ -9,7 +9,7 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/table',         title: 'People',        icon:'nc-tile-56',    class: '' },
+    {path: '/table', title: 'People', icon: 'nc-tile-56', class: ''},
 ];
 
 @Component({
@@ -20,6 +20,7 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
