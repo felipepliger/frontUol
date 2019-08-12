@@ -41,6 +41,7 @@
                 </div>
 
                 <div *ngIf="!peoples" style="margin-left: 45%" class="loader"></div>
+
                 <div *ngIf="peoples" class="">
                     <table class="table table-bored">
                         <thead class=" text-primary">
@@ -80,11 +81,13 @@
         </button>
     </div>
     <div class="modal-body">
-        <ul class="list-group">
+        <ul *ngIf="listaFilms.length > 0" class="list-group">
             <li *ngFor="let filme of listaFilms" class="list-group-item"><a (click)="closeModal()"
                                                                             [routerLink]="['/film/' + filme.id]"><b>{{ filme.title }}</b></a>
             </li>
         </ul>
+
+        <div *ngIf="listaFilms.length < 1" style="margin-left: 40%" class="loader"></div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="closeModal()">Fechar</button>
